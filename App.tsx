@@ -6,6 +6,7 @@ import HomeScreen from './src/screens/Home/HomeScreen';
 import OrdersScreen from './src/screens/Order/OrderScreen';
 import ProductsScreen from './src/screens/Product/ProductScreen';
 
+
 const Tab = createBottomTabNavigator();
 
 const App: React.FC = () => {
@@ -17,28 +18,25 @@ const App: React.FC = () => {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'home-outline';
+              iconName = focused ? 'home-sharp' : 'home-outline';
             } else if (route.name === 'Orders') {
-              iconName = focused ? 'cart' : 'cart-outline';
+              iconName = focused ? 'cart-sharp' : 'cart-outline';
             } else if (route.name === 'Products') {
-              iconName = focused ? 'list' : 'list-outline';
-            }
-            else {
-              iconName = 'help'
+              iconName = focused ? 'list-sharp' : 'list-outline';
+            } else {
+              iconName = 'help'; // Default icon
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'gray',
-          style: {
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
             backgroundColor: '#f8f8f8',
             borderTopWidth: 1,
             borderTopColor: '#e5e5e5',
           },
-        }}
+        })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Orders" component={OrdersScreen} />
