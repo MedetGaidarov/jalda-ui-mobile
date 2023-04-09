@@ -1,21 +1,38 @@
 import React from 'react';
-import styles from './Product.module.css';
+import { View, Text, StyleSheet } from 'react-native';
 
 interface ProductProps {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
+  product: {
+    id: number;
+    name: string;
+    price: number;
+  };
 }
 
-const Product: React.FC<ProductProps> = ({ id, name, price, imageUrl }) => {
+const Product: React.FC<ProductProps> = ({ product }) => {
   return (
-    <div className={styles.product}>
-      <img className={styles.image} src={imageUrl} alt={name} />
-      <h2 className={styles.name}>{name}</h2>
-      <p className={styles.price}>${price.toFixed(2)}</p>
-    </div>
+    <View style={styles.productContainer}>
+      <Text style={styles.productName}>{product.name}</Text>
+      <Text style={styles.productPrice}>${product.price.toFixed(2)}</Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  productContainer: {
+    padding: 16,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 4,
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  productPrice: {
+    fontSize: 16,
+  },
+});
 
 export default Product;

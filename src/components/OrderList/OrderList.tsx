@@ -1,32 +1,33 @@
 import React from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import Order from '../Order/Order';
-import styles from './OrderList.module.css';
 
 interface OrderData {
   id: number;
-  customerName: string;
-  totalAmount: number;
-  date: string;
+  customer: string;
+  total: number;
+  status: string;
 }
 
-interface OrdersListProps {
+interface OrderListProps {
   orders: OrderData[];
 }
 
-const OrdersList: React.FC<OrdersListProps> = ({ orders }) => {
+const OrderList: React.FC<OrderListProps> = ({ orders }) => {
   return (
-    <div className={styles.ordersList}>
+    <ScrollView contentContainerStyle={styles.orderListContainer}>
       {orders.map((order) => (
-        <Order
-          key={order.id}
-          id={order.id}
-          customerName={order.customerName}
-          totalAmount={order.totalAmount}
-          date={order.date}
-        />
+        <Order key={order.id} order={order} />
       ))}
-    </div>
+    </ScrollView>
   );
 };
 
-export default OrdersList;
+const styles = StyleSheet.create({
+  orderListContainer: {
+    flexGrow: 1,
+    padding: 16,
+  },
+});
+
+export default OrderList;

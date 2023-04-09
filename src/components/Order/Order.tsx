@@ -1,22 +1,41 @@
 import React from 'react';
-import styles from './Order.module.css';
+import { View, Text, StyleSheet } from 'react-native';
 
 interface OrderProps {
-  id: number;
-  customerName: string;
-  totalAmount: number;
-  date: string;
+  order: {
+    id: number;
+    customer: string;
+    total: number;
+    status: string;
+  };
 }
 
-const Order: React.FC<OrderProps> = ({ id, customerName, totalAmount, date }) => {
+const Order: React.FC<OrderProps> = ({ order }) => {
   return (
-    <div className={styles.order}>
-      <h3 className={styles.orderId}>Order #{id}</h3>
-      <p className={styles.customerName}>Customer: {customerName}</p>
-      <p className={styles.totalAmount}>Total Amount: ${totalAmount.toFixed(2)}</p>
-      <p className={styles.date}>Date: {date}</p>
-    </div>
+    <View style={styles.orderContainer}>
+      <Text style={styles.orderTitle}>Order ID: {order.id}</Text>
+      <Text style={styles.orderDetails}>Customer: {order.customer}</Text>
+      <Text style={styles.orderDetails}>Total: ${order.total.toFixed(2)}</Text>
+      <Text style={styles.orderDetails}>Status: {order.status}</Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  orderContainer: {
+    padding: 16,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 4,
+  },
+  orderTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  orderDetails: {
+    fontSize: 16,
+  },
+});
 
 export default Order;
